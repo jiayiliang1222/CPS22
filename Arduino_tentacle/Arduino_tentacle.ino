@@ -51,14 +51,17 @@ void loop() {
    speed = 0.5;
   }
   
+
+
+  if (gesture>0){
+  
   angle = angle + speed * direction;
-  if (angle>=90){
+  if (angle>=180){
     direction= -1;
   }else if(angle <= 0){
     direction = 1;
   }
 
-  if (gesture>0){
    servo.setAngle(1, angle);
    delay(1000);
    servo.setAngle(2, angle);
@@ -74,7 +77,10 @@ void loop() {
   }
 
 
-  Serial.write(angle);
-  delay(1000);
+ // Serial.write(angle);
+ // delay(1000);
+
+
 
 }
+
