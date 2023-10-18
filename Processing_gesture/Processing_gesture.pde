@@ -2,7 +2,9 @@ import oscP5.*;
 import processing.serial.*;
 
 OscP5 oscP5;  
-Serial myPort;
+Serial Tentacle;
+Serial Arm;
+
 color backgroundColor = color(0);  
 int gesture = 0;
 
@@ -21,7 +23,10 @@ void setup() {
    printArray(Serial.list());
   // this prints out the list of all available serial ports on your computer.
   
- // myPort = new Serial(this, Serial.list()[ 4 ], 9600);
+  //port number TBA
+   Tentacle = new Serial(this, Serial.list()[ 4 ], 9600);
+   Arm = new Serial(this, Serial.list()[ 5 ], 9600);
+   
   // find the port "/dev/cu.usbmodem----" or "/dev/tty.usbmodem----" 
   
   
@@ -62,7 +67,9 @@ void draw() {
   text("Mad", 40, 120); 
   }
   
- //  myPort.write(gesture);
+  Tentacle.write(gesture);
+  Arm.write(gesture);
+
 
 }
 
