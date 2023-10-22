@@ -4,9 +4,10 @@
 
 ServoDriver servo;
 
-int gesture = 0;
+int gesture = 1;
 
 float speed = 0;
+
 float angle = 0;
 int direction;
 
@@ -24,17 +25,19 @@ void loop() {
  while (Serial.available()) {
   gesture = Serial.read();
   }
-   if (gesture == 1){
+
+
+   if (gesture == 2){
     calm = true;
     happy = false;
     mad = false;
   }
-    if (gesture == 2){
+    if (gesture == 3){
     happy = true;
     mad = false;
     calm = false;
   }
-    if (gesture == 3){
+    if (gesture == 4){
     mad = true;
     happy = false;
     calm = false;
@@ -42,38 +45,28 @@ void loop() {
 
     //3 states
   if (calm){
-   speed = 0.1;
+   speed = 0.05;
   }
    if (happy){
-   speed = 0.3;
+   speed = 0.15;
   }
    if (mad){
-   speed = 0.5;
+   speed = 0.3;
   }
   
-
-
-  if (gesture>0){
-  
+  if (gesture>1){
   angle = angle + speed * direction;
   if (angle>=180){
     direction= -1;
   }else if(angle <= 0){
     direction = 1;
   }
-
    servo.setAngle(1, angle);
-   delay(1000);
    servo.setAngle(2, angle);
-   delay(1000);
    servo.setAngle(3, angle);
-   delay(1000);
    servo.setAngle(4, angle);
-   delay(1000);
-   servo.setAngle(5, angle);
-   delay(1000);
-   servo.setAngle(6, angle);
-   delay(1000);
+
+
   }
 
 
@@ -83,4 +76,3 @@ void loop() {
 
 
 }
-

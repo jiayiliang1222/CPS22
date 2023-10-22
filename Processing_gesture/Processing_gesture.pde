@@ -25,7 +25,7 @@ void setup() {
   
   //port number TBA
    Tentacle = new Serial(this, Serial.list()[ 4 ], 9600);
-   Arm = new Serial(this, Serial.list()[ 5 ], 9600);
+  // Arm = new Serial(this, Serial.list()[ 4 ], 9600);
    
   // find the port "/dev/cu.usbmodem----" or "/dev/tty.usbmodem----" 
   
@@ -39,17 +39,17 @@ void draw() {
   textSize(64);
   fill(255);
   
-   if (gesture == 1){
+   if (gesture == 2){
     calm = true;
     happy = false;
     mad = false;
   }
-    if (gesture == 2){
+    if (gesture == 3){
     happy = true;
     mad = false;
     calm = false;
   }
-    if (gesture == 3){
+    if (gesture == 4){
     mad = true;
     happy = false;
     calm = false;
@@ -68,7 +68,7 @@ void draw() {
   }
   
   Tentacle.write(gesture);
-  Arm.write(gesture);
+ // Arm.write(gesture);
 
 
 }
