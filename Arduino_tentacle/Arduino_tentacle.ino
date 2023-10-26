@@ -3,6 +3,17 @@
 #include <Wire.h>
 #include <BasicTimer.h>
   //NOTE: install Basic Timer library https://github.com/rtnate/arduino-BasicTimer
+#include <FlexyStepper.h>
+#include "servoNotes"
+
+const int MOTOR_X_STEP_PIN = 2;
+const int MOTOR_X_DIR_PIN = 5;
+const int MOTOR_Y_STEP_PIN = 3;
+const int MOTOR_Y_DIR_PIN = 6;
+const int STEPPERS_ENABLE_PIN = 8;
+
+FlexyStepper stepperX;
+FlexyStepper stepperY;
 
 ServoDriver servo;
 int gesture;
@@ -16,8 +27,9 @@ struct Appendage {
   int direction;
   int lastDirection;
   float tentacleSpeed;
-  int stepPin;//
-  int dirPin;//
+  int stepPin;
+  int servoPin;
+  int dirPin;
 
   init(int _servoPin) {
   servoPin= _servoPin;
@@ -71,10 +83,15 @@ struct animal {
 
 
 void setup() {
-  Wire.begin();
   Serial.begin(9600);
-  servo.init(0x7f);
+  pinMode(STEPPERS_ENABLE_PIN, OUTPUT);       
 
+  // connect and configure the stepper motor to there IO pins
+  stepperX.connectToPins(MOTOR_X_STEP_PIN, MOTOR_X_DIR_PIN);
+  stepperY.connectToPins(MOTOR_Y_STEP_PIN, MOTOR_Y_DIR_PIN);
+ 
+  // enable the stepper motors
+  digitalWrite(STEPPERS_ENABLE_PIN, LOW);     
 
   tentacleOne.init(1); 
   tentacleTwo.init(2);
@@ -94,12 +111,6 @@ void loop() {
   }
 
   jellyfish.setEmotion(gesture);
-
-  //replace these calls with our new appendage code
-   servo.setAngle(tentacleOne.servoPin, tentacleOne.currentAngle);
-   servo.setAngle(tentacleTwo.servoPin, tentacleTwo.currentAngle); //100 ms later run this
-   servo.setAngle(tentacleThree.servoPin, tentacleThree.currentAngle); //100 ms later run this
-   servo.setAngle(tentacleFour.servoPin, tentacleFour.currentAngle); //100 ms later run this
 
 
   }
