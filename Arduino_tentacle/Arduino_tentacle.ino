@@ -147,7 +147,7 @@ void resumeMotorFunctions(int _speed){
 
   if(_speed >100) _speed = 100;
    
-   stepperX.setSpeedInStepsPerSecond(_speed);
+  stepperX.setSpeedInStepsPerSecond(_speed);
   stepperY.setSpeedInStepsPerSecond(_speed);
 }
 
