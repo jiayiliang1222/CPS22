@@ -43,7 +43,7 @@ void loop() {
    if (happy){
    servo.setAngle(1, 0);
    delay(1000);
-   servo.setAngle(2, 0);
+  /* servo.setAngle(2, 0);
    delay(1000);
    servo.setAngle(3, 0);
    delay(1000);

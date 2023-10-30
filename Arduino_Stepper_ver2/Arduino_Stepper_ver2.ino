@@ -115,55 +115,14 @@ void loop()
        //runJustTheXStepper(X_speed, X_acceleration, X_steps);
      }
     }
-
-  if (gesture>1){
-    if (gesture == 2){
-    calm = true;
-    happy = false;
-    sad = false;
-    mad = false;
-
-    calm_ = 1;
-    happy_ = 0;
-    sad_ = 0;
-    mad_ = 0;
-  }
-    if (gesture == 3){
-    happy = true;
-    mad = false;
-    sad = false;
-    calm = false;
-  
-    happy_ = 1;
-    mad_ = 0;
-    sad_ = 0;
-    calm_ = 0;
-  }
-    if (gesture == 4){
-    mad = false;
-    happy = false;
-    sad = true;
-    calm = false;
-
-    mad_ = 0;
-    happy_ = 0;
-    sad_ = 1;
-    calm_ = 0;
-  }
-    if (gesture == 5){
-    mad = true;
-    happy = false;
-    sad = false;
-    calm = false;
-  
-    mad_ = 1;
-    happy_ = 0;
-    sad_ = 0;
-    calm_ = 0;
-  }
-  }
-    //4 states
-  if (calm){
+switch (gesture) {
+        case 1:
+            break;
+        case 2:
+           calm = true;
+           happy = false;
+           sad = false;
+           mad = false;
     Z_speed = 75;
     A_speed = 75;
 
@@ -176,9 +135,13 @@ void loop()
     runJustTheAStepper(A_speed, A_acceleration, A_steps); 
     runJustTheAStepper(A_speed, A_acceleration, -A_steps); 
     runJustTheZStepper(Z_speed, Z_acceleration, Z_steps);
-    runJustTheZStepper(Z_speed, Z_acceleration, -Z_steps);
-  }
-   if (happy){
+    runJustTheZStepper(Z_speed, Z_acceleration, -Z_steps);                // 执行与 gesture == 1 相关的操作
+            break;
+        case 3:
+          happy = true;
+          mad = false;
+          sad = false;
+          calm = false;
     X_speed = 100;
     Y_speed = 100;
 
@@ -191,19 +154,28 @@ void loop()
     runJustTheXStepper(X_speed, X_acceleration, X_steps);
     runJustTheXStepper(X_speed, X_acceleration, -X_steps);
     runJustTheYStepper(Y_speed, Y_acceleration, Y_steps); 
-    runJustTheYStepper(Y_speed, Y_acceleration, -Y_steps); 
-  }
-   if (sad){
+    runJustTheYStepper(Y_speed, Y_acceleration, -Y_steps);                 // 执行与 gesture == 2 相关的操作
+            break;
+        case 4:
+          mad = false;
+          happy = false;
+          sad = true;
+          calm = false;
+          
     A_speed = 50;
     A_acceleration = 50;
 
     A_steps = 75;
 
     runJustTheAStepper(A_speed, A_acceleration, A_steps);
-    runJustTheAStepper(A_speed, A_acceleration, -A_steps);
-
-  }   
-   if (mad){
+    runJustTheAStepper(A_speed, A_acceleration, -A_steps);    // 执行与 gesture == 3 相关的操作
+            break;
+        case 5:
+          mad = true;
+          happy = false;
+          sad = false;
+          calm = false;
+          
     Z_speed = 150;
     A_speed = 150;
 
@@ -217,9 +189,11 @@ void loop()
     runJustTheZStepper(Z_speed, Z_acceleration, -Z_steps);
 
     runJustTheAStepper(A_speed, A_acceleration, A_steps); 
-    runJustTheAStepper(A_speed, A_acceleration, -A_steps); 
-
-   }
+    runJustTheAStepper(A_speed, A_acceleration, -A_steps);      // 执行与 gesture == 4 相关的操作
+            break;
+        default:
+            break;
+    }
 }
 
 

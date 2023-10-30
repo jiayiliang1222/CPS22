@@ -24,7 +24,7 @@ void setup() {
   // this prints out the list of all available serial ports on your computer.
   
   //port number TBA
-   Tentacle = new Serial(this, Serial.list()[ 4 ], 9600);
+   Tentacle = new Serial(this, Serial.list()[1], 9600);
   // Arm = new Serial(this, Serial.list()[ 4 ], 9600);
    
   // find the port "/dev/cu.usbmodem----" or "/dev/tty.usbmodem----" 
@@ -55,7 +55,7 @@ void draw() {
     calm = false;
   }
   
-  if (calm){
+ /* if (calm){
   text("Calm", 40, 120); 
  
   }
@@ -65,7 +65,7 @@ void draw() {
   }
    if (mad){
   text("Mad", 40, 120); 
-  }
+  }*/
   
   Tentacle.write(gesture);
  // Arm.write(gesture);
