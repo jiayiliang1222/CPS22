@@ -1,15 +1,14 @@
 #include <FlexyStepper.h>
 
-//X:Right
-//Y:Left
-//Z:Outward
-//A:Inward
+//X:Right —
+//Y:Left -
+//Z:Outward +
+//A:Inward +
 //+ 顺时针clockwise
 //- 逆时针counterclockwise
 
 int gesture = 1; 
 
-const int LED_PIN = 13;
 const int MOTOR_X_STEP_PIN = 2;
 const int MOTOR_Y_STEP_PIN = 3;
 const int MOTOR_Z_STEP_PIN = 4;
@@ -79,7 +78,7 @@ int mad_ = 0;
 
 void setup() 
 {
-  pinMode(LED_PIN, OUTPUT);   
+//  pinMode(LED_PIN, OUTPUT);   
   pinMode(STEPPERS_ENABLE_PIN, OUTPUT);       
   Serial.begin(9600);
 
@@ -129,8 +128,8 @@ switch (gesture) {
     Z_acceleration = 75;
     A_acceleration = 75;
 
-    Z_steps = -100;
-    A_steps = 100;
+    Z_steps = 135; //1.8
+    A_steps = 135;
 
     runJustTheAStepper(A_speed, A_acceleration, A_steps); 
     runJustTheAStepper(A_speed, A_acceleration, -A_steps); 
@@ -148,8 +147,8 @@ switch (gesture) {
     X_acceleration = 100;
     Y_acceleration = 100;
 
-    X_steps = 150;
-    Y_steps = -150;
+    X_steps = -100;
+    Y_steps = -135;
 
     runJustTheXStepper(X_speed, X_acceleration, X_steps);
     runJustTheXStepper(X_speed, X_acceleration, -X_steps);
@@ -182,8 +181,8 @@ switch (gesture) {
     Z_acceleration = 150;
     A_acceleration = 150;
 
-    Z_steps = -199;
-    A_steps = 199;
+    Z_steps = 100;
+    A_steps = 100;
 
     runJustTheZStepper(Z_speed, Z_acceleration, Z_steps);
     runJustTheZStepper(Z_speed, Z_acceleration, -Z_steps);
