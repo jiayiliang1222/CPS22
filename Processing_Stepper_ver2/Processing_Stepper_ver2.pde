@@ -23,7 +23,7 @@ boolean mad = false;
 void setup() {
   size(800, 400);
   cp5 = new ControlP5(this);
-  myPort = new Serial(this, "COM10", 9600);  // Replace "COM3" with your Arduino's port
+//  myPort = new Serial(this, "COM10", 9600);  // Replace "COM3" with your Arduino's port
   oscP5 = new OscP5(this, 12000);
   
   cp5.addSlider("totalStep")
@@ -41,7 +41,8 @@ void draw() {
      String message = str(gesture) + "/n";
      println(gesture);
      gesture_ = gesture;
-     myPort.write(message);
+     println("message: " + message);
+   //  myPort.write(message);
     }
     
     totalStep = int(cp5.getController("totalStep").getValue());
@@ -79,5 +80,6 @@ void keyPressed() {
 
 void oscEvent(OscMessage theOscMessage) {  
   int oscArg = int(theOscMessage.get(0).floatValue()); 
+//  println('1');
   gesture = oscArg;
 }
